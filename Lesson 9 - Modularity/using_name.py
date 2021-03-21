@@ -1,0 +1,23 @@
+# __name__ is a specially named variable allowing python interpreter to detect
+# whether a module is run as a script or imported into another module
+
+from urllib.request import urlopen
+
+def fetch_words():
+    story = urlopen("http://sixty-north.com/c/t.txt")
+    story_words = []
+    for line in story:
+        line_words = line.decode('utf-8').split()
+        for word in line_words:
+            story_words.append(word)
+    story.close()
+
+    return story_words
+
+def main():
+    words = fetch_words()
+    for word in words:
+        print(word)
+
+if __name__ == "__main__":
+    main()
